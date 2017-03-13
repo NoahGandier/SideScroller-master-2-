@@ -22,7 +22,6 @@ public class Hero extends Actor
     private boolean cannotJump = false;
     private boolean lookingRight = true;
     private int live = 1;
-    private int reloadTimer = 25;
     private int marioSz = 1; //Number will change to 1,2,3 depending on different interactions to change
     //the Heros appearance    
 
@@ -40,8 +39,6 @@ public class Hero extends Actor
         bigMario.scale(36,36);
         bigJump.scale(38,38);
         bigMario.mirrorHorizontally();
-        fireMario.scale(36,36);
-        fireMarioJumping.scale(38,38);
     }
 
     /**
@@ -56,29 +53,7 @@ public class Hero extends Actor
         checkCollision();
 
         ScrollerWorld myWorld = (ScrollerWorld)getWorld();
-        if ( marioSz ==3 )//if marioSz = 3, then only will the Hero be able to throw fireBalls
-        {
-
-            if( Greenfoot.isKeyDown("space") )
-            {
-                if(reloadTimer >= 25)
-                {
-                    if( lookingRight == true ) 
-                    {
-                        myWorld.addObject(new fireBall(), getX() + 30, getY());
-                        reloadTimer = 0;
-                    }
-                    else
-                    { 
-                        myWorld.addObject(new fireBall(), getX() - 30, getY());
-                        reloadTimer = 0;
-                    }
-                }
-                reloadTimer++;
-            }
-
-        }
-
+       
     }
 
     /**
@@ -97,8 +72,6 @@ public class Hero extends Actor
                 jumping.mirrorHorizontally();
                 bigMario.mirrorHorizontally();
                 bigJump.mirrorHorizontally();
-                fireMario.mirrorHorizontally();
-                fireMarioJumping.mirrorHorizontally();
             }
 
             lookingRight = true; 
@@ -137,10 +110,6 @@ public class Hero extends Actor
                 else if(marioSz == 2)
                 {
                     setImage(bigJump);
-                }
-                else if(marioSz == 3)
-                {
-                    setImage(fireMarioJumping);
                 }
                 y = up;
                 fall();
@@ -236,11 +205,7 @@ public class Hero extends Actor
             else if(marioSz == 2)
             {
                 setImage(bigMario);
-            }
-            else if(marioSz == 3)
-            {
-                setImage(fireMario);
-            }            
+            }         
             cannotJump = false;
             y = 0;
 
@@ -279,13 +244,6 @@ public class Hero extends Actor
             getWorld().removeObject(getOneIntersectingObject(Lives.class) );
             myWorld.addToLives();
             live++; // will increase amt of lives
-        }
-
-        if( isTouching(Flower.class))
-        {
-            getWorld().removeObject(getOneIntersectingObject(Flower.class) );
-            marioSz = 3;
-            setImage(fireMario);
         }        
     }
 }

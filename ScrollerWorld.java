@@ -3,7 +3,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 /**
  * Write a description of class MyWorld here.
  * 
- * @author (Omar Nakhleh) 
+ * @author (Noah Gandier) 
  * @version (a version number or a date)
  */
 public class ScrollerWorld extends World
@@ -63,7 +63,7 @@ public class ScrollerWorld extends World
 
         } 
 
-        if(Greenfoot.getRandomNumber(150) < 1)
+        if(Greenfoot.getRandomNumber(100) < 1)
         {
             addObject(new Enemy(), 559, getHeight() - 27);
         }
@@ -81,11 +81,6 @@ public class ScrollerWorld extends World
         if(Greenfoot.getRandomNumber(900) < 1)
         {
             addObject(new Lives(), 559, getHeight() - 27);
-        }
-
-        if(Greenfoot.getRandomNumber(900) < 1)
-        {
-            addObject(new Flower(), 559, getHeight() - 27);
         }
 
         displayScore();
